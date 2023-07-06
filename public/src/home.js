@@ -1,11 +1,14 @@
+//count all books
 function getTotalBooksCount(books) {
   return books.length;
 }
 
+//count all accounts
 function getTotalAccountsCount(accounts) {
   return accounts.length;
 }
 
+//get a new count of how many books are borrowed.
 function getBooksBorrowedCount(books) {
   return books.reduce((count, book) => {
     const borrows = book.borrows;
@@ -14,6 +17,7 @@ function getBooksBorrowedCount(books) {
   }, 0);
 }
 
+//make a new object with most common books based on genre.
 function getMostCommonGenres(books) {
   let genres = {};
   let count = 0;
@@ -31,6 +35,7 @@ function getMostCommonGenres(books) {
   return sortedGengres.slice(0, 5);
 }
 
+//create an array with the most popular books and their count
 function getMostPopularBooks(books) {
   let popular = [];
   let maxBorrows = 0;
@@ -55,6 +60,7 @@ function getMostPopularBooks(books) {
   return sortedPopularBooks.slice(0, 5);
 }
 
+//create an object with the most popular author based on how many borrowed books they have.
 function getMostPopularAuthors(books, authors) {
   let authorCounts = {};
   books.forEach((book) => {
