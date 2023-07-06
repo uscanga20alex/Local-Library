@@ -1,11 +1,14 @@
+//looking for id w/i account
 function findAccountById(accounts, id) {
   return accounts.find((account) => account.id === id);
  }
- 
+
+//sorting a-z lastnames
  function sortAccountsByLastName(accounts) {
    return accounts.sort((a, b) => a.name.last > b.name.last ? 1 : -1);
  }
- 
+
+//use account and books to filter out how many books are borrowed and get a count.
  function getTotalNumberOfBorrows(account, books) {
    const accountId = account.id;
    let totalBorrows = 0;
@@ -17,7 +20,8 @@ function findAccountById(accounts, id) {
    return totalBorrows;
  };
  
- function getBooksPossessedByAccount(account, books, authors) {
+//filter what books are in possession of different account id and create a new array with id and author 
+function getBooksPossessedByAccount(account, books, authors) {
    const accountId = account.id;
    const checkedOutBooks = books.filter((book) => {
      const recentBorrow = book.borrows[0];
