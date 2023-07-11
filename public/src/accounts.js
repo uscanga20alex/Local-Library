@@ -27,12 +27,18 @@ function getBooksPossessedByAccount(account, books, authors) {
      const recentBorrow = book.borrows[0];
      return recentBorrow.id === accountId && !recentBorrow.returned;
    });
-   const booksWithAuthor = checkedOutBooks.map((book) => {
-     const author = authors.find((author) => author.id === book.authorId);
-     return {...book, author};
-   });
+   const booksWithAuthor = mapBooks(checkedOutBooks);
    return booksWithAuthor;
  }
+
+ function mapBooks(checkedOutBooks) {
+  const out = checkedOutBooks.map((book) => { //returns array, need return at beginning
+    const author= authors.find((author) => author.id === book.authorId);
+    return {...book, author};
+  })
+  return out;
+ }
+
 module.exports = {
   findAccountById,
   sortAccountsByLastName,
