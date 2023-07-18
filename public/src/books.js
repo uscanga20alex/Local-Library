@@ -16,12 +16,15 @@ function partitionBooksByBorrowedStatus(books) {
 }
 
 //create a new array for each book that's borrowed by id.
-function getBorrowersForBook(book, accounts) {
-  const borrowers = book.borrows.map((borrow) => {
-    const account = accounts.find((acc) => acc.id === borrow.id);
-    return { ...borrow, ...account};
+function getBorrowerDetails(borrows, accounts) {
+  return borrows.map((borrow) => {
+    const account = getAccountDetails(borrow.id, accounts);
+    return { ...borrow, ...account };
   });
-  return borrowers.slice(0, 10);
+}
+
+function getAccountDetails(accountId, accounts) {
+  return accounts.find((account) => account.id === accountId);
 }
 module.exports = {
   findAuthorById,
