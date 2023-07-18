@@ -70,6 +70,11 @@ function getMostPopularAuthors(books, authors) {
     }
     authorCounts[authorId] += borrows.length
   });
+  return authorCounts;
+}
+function getTopAuthors (books, authors){
+  const authorCounts = countAuthorBooks(books);
+  
   const sortedAuthors= Object.entries(authorCounts)
   .sort(([authorIdA, countA], [authourIdB, countB]) => countB - countA);
   const topAuthors = sortedAuthors.slice(0, 5);
