@@ -22,22 +22,19 @@ function findAccountById(accounts, id) {
  
 //filter what books are in possession of different account id and create a new array with id and author 
 function getBooksPossessedByAccount(account, books, authors) {
-   const accountId = account.id;
-   const checkedOutBooks = books.filter((book) => {
-     const recentBorrow = book.borrows[0];
-     return recentBorrow.id === accountId && !recentBorrow.returned;
-   });
-   const booksWithAuthor = mapBooks(checkedOutBooks);
-   return booksWithAuthor;
- }
+  const booksWithAuthor =  books.filter((book) => book.borrows.some(acc => acc.id === account.id && acc.returned === false))
+    return mapBooks(booksWithAuthor, authors)
 
- function mapBooks(checkedOutBooks) {
-  const out = checkedOutBooks.map((book) => { //returns array, need return at beginning
-    const author= authors.find((author) => author.id === book.authorId);
-    return {...book, author};
+}
+
+function mapBooks(booksWithAuthor, authors) {
+ const book = 
+  booksWithAuthor.map((book) => { const author = authors.find(author => author.id === book.authorId)
+     book.author = author;
+     return book;     
   })
-  return out;
- }
+  return book;
+}
 
 module.exports = {
   findAccountById,
